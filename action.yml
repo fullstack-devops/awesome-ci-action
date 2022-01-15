@@ -1,0 +1,31 @@
+name: "Setup awesome-ci tooling"
+description: "Setup awesome-ci as a CI tool in the latest stable version"
+branding:
+  color: blue
+  icon: anchor
+inputs:
+  version:
+    required: false
+    description: "The version to use (default: 0.7.5)"
+    default: latest
+  arch:
+    required: false
+    description: "The softwart architecture (default: x86_64)"
+    default: x86_64
+runs:
+  using: "composite"
+  steps:
+    - shell: bash
+      run: |
+        version="${{ inputs.version }}"
+        arch="${{ inputs.arch }}"
+
+        DL_URL=https://github.com/$ACI_REPO/releases/download/$version/awesome-ci_${version}_${arch}
+        wget $DL_URL -O "$GITHUB_ACTION_PATH/awesome-ci"
+        chmod +x $GITHUB_ACTION_PATH/awesome-ci
+        
+        PATH=$GITHUB_ACTION_PATH/awesome-ci:$PATH
+        export $PATH
+        echo "$PATH" >> $GITHUB_ENV
+      env:
+        ACI_REPO: fullstack-devops/awesome-ci
