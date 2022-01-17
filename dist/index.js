@@ -1310,15 +1310,15 @@ async function run() {
     const downloadUrl = `https://github.com/${repo}/releases/download/${wantedVersion}/${aciName}`;
     const downloadPath = await tc.downloadTool(downloadUrl, newAciLocFile);
     core.info(`downloaded awesome-ci to ${newAciLocFile}`);
-    fs.readdir(newAciLoc, (err, files) => {
+    core.info('Adding to the cache ...');
+    const cachedDir = await tc.cacheDir(newAciLoc, 'awesome-ci', wantedVersion);
+    fs.readdir(cachedDir, (err, files) => {
         files.forEach(file => {
             core.info(file);
         });
     });
-    core.info('Adding to the cache ...');
-    const cachedDir = await tc.cacheDir(newAciLoc, 'awesome-ci', wantedVersion);
     core.info(`Successfully cached awesome-ci to ${cachedDir}`);
-    core.addPath(newAciLocFile);
+    core.addPath(cachedDir);
 }
 run();
 
