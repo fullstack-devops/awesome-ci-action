@@ -27,6 +27,8 @@ runs:
       run: |
         echo "{path}" >> $GITHUB_PATH
         echo "$(pwd)/awesome-ci" >> $GITHUB_PATH
+    - shell: bash
+      run: |
         echo "Path: $PATH"
       env:
         ACI_REPO: fullstack-devops/awesome-ci
