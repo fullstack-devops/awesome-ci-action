@@ -1309,7 +1309,7 @@ async function run() {
     // core.info(`Acquiring ${info.resolvedVersion} from ${info.downloadUrl}`);
     const downloadPath = await tc.downloadTool(downloadUrl, undefined);
     core.info(`downloaded awesome-ci to ${downloadPath}`);
-    fs.rename(`${downloadPath}/${aciName}`, "awesome-ci", (err) => {
+    fs.rename(`${downloadPath}/${aciName}`, `${downloadPath}/awesome-ci`, (err) => {
         if (err)
             throw core.error(err);
         core.info('successfully renamed awesome-ci!');
