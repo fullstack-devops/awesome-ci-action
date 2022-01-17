@@ -1318,7 +1318,12 @@ async function run() {
         });
     });
     core.info(`Successfully cached awesome-ci to ${cachedDir}`);
-    core.addPath(newAciLoc);
+    fs.chmod(`${cachedDir}/awesome-ci`, 0o777, (err) => {
+        if (err)
+            throw core.error(err);
+        core.info('successfully renamed awesome-ci!');
+    });
+    core.addPath(cachedDir);
     core.info('Added awesome-ci to the path');
 }
 run();
