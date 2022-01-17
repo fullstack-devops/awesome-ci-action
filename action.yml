@@ -21,11 +21,11 @@ runs:
         arch="${{ inputs.arch }}"
 
         DL_URL=https://github.com/$ACI_REPO/releases/download/$version/awesome-ci_${version}_${arch}
-        wget $DL_URL -O "$GITHUB_ACTION_PATH/awesome-ci"
-        chmod +x $GITHUB_ACTION_PATH/awesome-ci
+        wget $DL_URL -O "$(pwd)/awesome-ci"
+        chmod +x $(pwd)/awesome-ci
 
         echo "{path}" >> $GITHUB_PATH
-        echo "$GITHUB_ACTION_PATH/awesome-ci" >> $GITHUB_PATH
-        echo $PATH
+        echo "$(pwd)/awesome-ci" >> $GITHUB_PATH
+        echo "Path: $PATH"
       env:
         ACI_REPO: fullstack-devops/awesome-ci
