@@ -33,7 +33,9 @@ async function run() {
         });
     });
     core.info(`Successfully cached awesome-ci to ${cachedDir}`);
-    core.addPath(cachedDir);
+    
+    core.addPath(newAciLoc);
+    core.info('Added awesome-ci to the path');
 }
 
 
