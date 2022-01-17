@@ -22,20 +22,11 @@
   "homepage": "https://github.com/fullstack-devops/awesome-ci-action#readme",
   "dependencies": {
     "@actions/core": "^1.6.0",
-    "@actions/tool-cache": "^1.7.1",
-    "fs": "^0.0.1-security",
-    "http": "^0.0.1-security"
+    "@actions/tool-cache": "^1.7.1"
   },
   "devDependencies": {
-    "@types/jest": "^27.0.2",
     "@types/node": "^12.0.4",
-    "@types/semver": "^6.0.0",
     "@zeit/ncc": "^0.21.0",
-    "jest": "^27.2.5",
-    "jest-circus": "^27.2.5",
-    "nock": "^10.0.6",
-    "prettier": "^1.17.1",
-    "ts-jest": "^27.0.5",
     "typescript": "^3.8.3"
   }
 }
