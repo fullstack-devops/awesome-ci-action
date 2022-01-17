@@ -24,6 +24,8 @@ runs:
         wget $DL_URL -O "$GITHUB_ACTION_PATH/awesome-ci"
         chmod +x $GITHUB_ACTION_PATH/awesome-ci
 
+        echo "{path}" >> $GITHUB_PATH
         echo "$GITHUB_ACTION_PATH/awesome-ci" >> $GITHUB_PATH
+        echo $PATH
       env:
         ACI_REPO: fullstack-devops/awesome-ci
