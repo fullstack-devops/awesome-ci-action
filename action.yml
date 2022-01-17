@@ -13,22 +13,5 @@ inputs:
     description: "The softwart architecture (default: amd64)"
     default: "amd64"
 runs:
-  using: "composite"
-  steps:
-    - shell: bash
-      run: |
-        version="${{ inputs.version }}"
-        arch="${{ inputs.arch }}"
-        DL_URL=https://github.com/$ACI_REPO/releases/download/$version/awesome-ci_${version}_${arch}
-        wget $DL_URL -O "$(pwd)/awesome-ci"
-        chmod +x $(pwd)/awesome-ci
-      env:
-        ACI_REPO: fullstack-devops/awesome-ci
-    - shell: bash
-      run: |
-        # echo "{path}" >> $GITHUB_PATH
-        # echo "$(pwd)/awesome-ci" >> $GITHUB_PATH
-        echo "::add-path::$(pwd)/awesome-ci"
-    - shell: bash
-      run: |
-        echo "Path: $PATH"
+  using: 'node12'
+  main: 'dist/index.js'
