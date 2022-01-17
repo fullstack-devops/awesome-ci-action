@@ -2,12 +2,13 @@ name: Publish Release from awesome-ci
 
 on:
   workflow_dispatch:
-    oldVersion:
-      description: 'Old Verison'     
-      required: true
-    version:
-      description: 'Verison'     
-      required: true
+    inputs:
+      oldVersion:
+        description: 'Old Verison'     
+        required: true
+      version:
+        description: 'Verison'     
+        required: true
 
 jobs:
   update_versions:
