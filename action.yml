@@ -26,8 +26,9 @@ runs:
         ACI_REPO: fullstack-devops/awesome-ci
     - shell: bash
       run: |
-        echo "{path}" >> $GITHUB_PATH
-        echo "$(pwd)/awesome-ci" >> $GITHUB_PATH
+        # echo "{path}" >> $GITHUB_PATH
+        # echo "$(pwd)/awesome-ci" >> $GITHUB_PATH
+        echo "::add-path::$(pwd)/awesome-ci"
     - shell: bash
       run: |
         echo "Path: $PATH"
