@@ -19,10 +19,11 @@ runs:
       run: |
         version="${{ inputs.version }}"
         arch="${{ inputs.arch }}"
-
         DL_URL=https://github.com/$ACI_REPO/releases/download/$version/awesome-ci_${version}_${arch}
         wget $DL_URL -O "$(pwd)/awesome-ci"
         chmod +x $(pwd)/awesome-ci
+      env:
+        ACI_REPO: fullstack-devops/awesome-ci
     - shell: bash
       run: |
         echo "{path}" >> $GITHUB_PATH
@@ -30,5 +31,3 @@ runs:
     - shell: bash
       run: |
         echo "Path: $PATH"
-      env:
-        ACI_REPO: fullstack-devops/awesome-ci
