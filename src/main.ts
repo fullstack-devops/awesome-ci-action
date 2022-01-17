@@ -15,25 +15,25 @@ async function run() {
     const newAciLoc = `${process.env.HOME}/bin`
     const newAciLocFile = path.join(newAciLoc, 'awesome-ci');
     console.log(newAciLoc)
-    
+
     const downloadUrl = `https://github.com/${repo}/releases/download/${wantedVersion}/${aciName}`
     const downloadPath = await tc.downloadTool(downloadUrl, newAciLocFile);
     core.info(`downloaded awesome-ci to ${newAciLocFile}`)
-    
-    fs.readdir(newAciLoc, (err, files) => {
-        files.forEach(file => {
-            core.info(file);
-        });
-    });
-    
+
     core.info('Adding to the cache ...');
     const cachedDir = await tc.cacheDir(
         newAciLoc,
         'awesome-ci',
         wantedVersion
     );
+
+    fs.readdir(cachedDir, (err, files) => {
+        files.forEach(file => {
+            core.info(file);
+        });
+    });
     core.info(`Successfully cached awesome-ci to ${cachedDir}`);
-    core.addPath(newAciLocFile);
+    core.addPath(cachedDir);
 }
 
 
