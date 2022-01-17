@@ -2,6 +2,7 @@ import * as tc from '@actions/tool-cache';
 import * as core from '@actions/core';
 import * as path from 'path';
 import * as fs from 'fs';
+import { exit } from 'process';
 
 async function run() {
     const wantedVersion = core.getInput('version');
@@ -11,31 +12,28 @@ async function run() {
     // Download awesome-ci
     const repo = "fullstack-devops/awesome-ci"
     const aciName = `awesome-ci_${wantedVersion}_${wantedArch}`
-    const downloadUrl = `https://github.com/${repo}/releases/download/${wantedVersion}/${aciName}`
-    // const file = fs.createWriteStream(awesomeCiName);
-
-    // core.info(`Acquiring ${info.resolvedVersion} from ${info.downloadUrl}`);
-    const downloadPath = await tc.downloadTool(downloadUrl, undefined);
-    core.info(`downloaded awesome-ci to ${downloadPath}`)
+    const newAciLoc = `${process.env.HOME}/bin`
+    const newAciLocFile = path.join(newAciLoc, 'awesome-ci');
+    console.log(newAciLoc)
     
-    await fs.renameSync(`${downloadPath}/${aciName}`, `${downloadPath}/awesome-ci`)
-
-    const extPath = path.join(downloadPath, 'awesome-ci');
-
-    fs.readdir(downloadPath, (err, files) => {
+    const downloadUrl = `https://github.com/${repo}/releases/download/${wantedVersion}/${aciName}`
+    const downloadPath = await tc.downloadTool(downloadUrl, newAciLocFile);
+    core.info(`downloaded awesome-ci to ${newAciLocFile}`)
+    
+    fs.readdir(newAciLoc, (err, files) => {
         files.forEach(file => {
-          core.info(file);
+            core.info(file);
         });
-      });
-
+    });
+    
     core.info('Adding to the cache ...');
     const cachedDir = await tc.cacheDir(
-        downloadPath,
+        newAciLoc,
         'awesome-ci',
         wantedVersion
     );
     core.info(`Successfully cached awesome-ci to ${cachedDir}`);
-    core.addPath(path.join(downloadPath, 'awesome-ci'));
+    core.addPath(newAciLocFile);
 }
 
 

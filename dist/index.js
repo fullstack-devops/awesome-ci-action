@@ -1304,22 +1304,21 @@ async function run() {
     // Download awesome-ci
     const repo = "fullstack-devops/awesome-ci";
     const aciName = `awesome-ci_${wantedVersion}_${wantedArch}`;
+    const newAciLoc = `${process.env.HOME}/bin`;
+    const newAciLocFile = path.join(newAciLoc, 'awesome-ci');
+    console.log(newAciLoc);
     const downloadUrl = `https://github.com/${repo}/releases/download/${wantedVersion}/${aciName}`;
-    // const file = fs.createWriteStream(awesomeCiName);
-    // core.info(`Acquiring ${info.resolvedVersion} from ${info.downloadUrl}`);
-    const downloadPath = await tc.downloadTool(downloadUrl, undefined);
-    core.info(`downloaded awesome-ci to ${downloadPath}`);
-    await fs.renameSync(`${downloadPath}/${aciName}`, `${downloadPath}/awesome-ci`);
-    const extPath = path.join(downloadPath, 'awesome-ci');
-    fs.readdir(downloadPath, (err, files) => {
+    const downloadPath = await tc.downloadTool(downloadUrl, newAciLocFile);
+    core.info(`downloaded awesome-ci to ${newAciLocFile}`);
+    fs.readdir(newAciLoc, (err, files) => {
         files.forEach(file => {
             core.info(file);
         });
     });
     core.info('Adding to the cache ...');
-    const cachedDir = await tc.cacheDir(downloadPath, 'awesome-ci', wantedVersion);
+    const cachedDir = await tc.cacheDir(newAciLoc, 'awesome-ci', wantedVersion);
     core.info(`Successfully cached awesome-ci to ${cachedDir}`);
-    core.addPath(path.join(downloadPath, 'awesome-ci'));
+    core.addPath(newAciLocFile);
 }
 run();
 
