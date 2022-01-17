@@ -1,0 +1,37 @@
+name: Publish Release from awesome-ci
+
+on:
+  workflow_dispatch:
+    oldVersion:
+      description: 'Old Verison'     
+      required: true
+    version:
+      description: 'Verison'     
+      required: true
+
+jobs:
+  update_versions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2
+      - name: Setup awesome-ci
+        uses: fullstack-devops/awesome-ci-action@main
+
+      - name: update versions in references
+        run: |
+          escapedVersion=$(echo "$VERSION" | sed 's/\./\\./g')
+          escapedOldVersion=$(echo "$OLD_VERSION" | sed 's/\./\\./g')
+          
+          sed -i -e "s/\($escapedOldVersion)/$escapedVersion/g" README.md
+          sed -i -e "s/\($escapedOldVersion)/$escapedVersion/g" action.yml
+        env:
+          VERSION: ${{ github.event.inputs.logLevel }}
+          OLD_VERSION: ${{ github.event.inputs.logLevel }}
+      
+      - name: debug
+        run: cat README.md && cat action.yml
+      # - name: Publish Release
+      #   run: awesome-ci release publish -releaseid "$ACI_RELEASE_ID" -upload "file=out/$ARTIFACT1,file=out/$ARTIFACT2"
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
