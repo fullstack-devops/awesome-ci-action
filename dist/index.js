@@ -1309,11 +1309,7 @@ async function run() {
     // core.info(`Acquiring ${info.resolvedVersion} from ${info.downloadUrl}`);
     const downloadPath = await tc.downloadTool(downloadUrl, undefined);
     core.info(`downloaded awesome-ci to ${downloadPath}`);
-    fs.rename(`${downloadPath}/${aciName}`, `${downloadPath}/awesome-ci`, (err) => {
-        if (err)
-            throw core.error(err);
-        core.info('successfully renamed awesome-ci!');
-    });
+    await fs.renameSync(`${downloadPath}/${aciName}`, `${downloadPath}/awesome-ci`);
     const extPath = path.join(downloadPath, 'awesome-ci');
     fs.readdir(downloadPath, (err, files) => {
         files.forEach(file => {
@@ -1323,6 +1319,7 @@ async function run() {
     core.info('Adding to the cache ...');
     const cachedDir = await tc.cacheDir(downloadPath, 'awesome-ci', wantedVersion);
     core.info(`Successfully cached awesome-ci to ${cachedDir}`);
+    core.addPath(path.join(downloadPath, 'awesome-ci'));
 }
 run();
 
