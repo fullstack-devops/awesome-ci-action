@@ -24,8 +24,8 @@ runs:
         wget $DL_URL -O "$GITHUB_ACTION_PATH/awesome-ci"
         chmod +x $GITHUB_ACTION_PATH/awesome-ci
         
-        PATH=$GITHUB_ACTION_PATH/awesome-ci:$PATH
-        export $PATH
+        PATH="$GITHUB_ACTION_PATH/awesome-ci:$PATH"
+        # export $PATH
         echo "$PATH" >> $GITHUB_ENV
       env:
         ACI_REPO: fullstack-devops/awesome-ci
