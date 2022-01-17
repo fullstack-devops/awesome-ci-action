@@ -22,6 +22,7 @@
   "homepage": "https://github.com/fullstack-devops/awesome-ci-action#readme",
   "dependencies": {
     "@actions/core": "^1.6.0",
+    "@actions/tool-cache": "^1.7.1",
     "fs": "^0.0.1-security",
     "http": "^0.0.1-security"
   },
