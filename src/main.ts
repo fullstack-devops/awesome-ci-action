@@ -2,7 +2,6 @@ import * as tc from '@actions/tool-cache';
 import * as core from '@actions/core';
 import * as path from 'path';
 import * as fs from 'fs';
-import { exit } from 'process';
 
 async function run() {
     const wantedVersion = core.getInput('version');
@@ -26,17 +25,11 @@ async function run() {
         'awesome-ci',
         wantedVersion
     );
-
-    fs.readdir(cachedDir, (err, files) => {
-        files.forEach(file => {
-            core.info(file);
-        });
-    });
     core.info(`Successfully cached awesome-ci to ${cachedDir}`);
 
     fs.chmod(`${cachedDir}/awesome-ci`, 0o777, (err) => {
         if (err) throw core.error(err);
-        core.info('successfully renamed awesome-ci!');
+        core.info('successfully add access rights to awesome-ci!');
     })
     
     core.addPath(cachedDir);

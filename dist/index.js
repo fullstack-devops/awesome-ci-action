@@ -1312,16 +1312,11 @@ async function run() {
     core.info(`downloaded awesome-ci to ${newAciLocFile}`);
     core.info('Adding to the cache ...');
     const cachedDir = await tc.cacheDir(newAciLoc, 'awesome-ci', wantedVersion);
-    fs.readdir(cachedDir, (err, files) => {
-        files.forEach(file => {
-            core.info(file);
-        });
-    });
     core.info(`Successfully cached awesome-ci to ${cachedDir}`);
     fs.chmod(`${cachedDir}/awesome-ci`, 0o777, (err) => {
         if (err)
             throw core.error(err);
-        core.info('successfully renamed awesome-ci!');
+        core.info('successfully add access rights to awesome-ci!');
     });
     core.addPath(cachedDir);
     core.info('Added awesome-ci to the path');
