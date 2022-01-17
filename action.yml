@@ -10,7 +10,7 @@ inputs:
     default: "0.7.6"
   arch:
     required: false
-    description: "The softwart architecture (default: x86_64)"
+    description: "The softwart architecture (default: amd64)"
     default: "amd64"
 runs:
   using: "composite"
