@@ -24,9 +24,15 @@ async function run() {
 
     const extPath = path.join(downloadPath, 'awesome-ci');
 
+    fs.readdir(downloadPath, (err, files) => {
+        files.forEach(file => {
+          core.info(file);
+        });
+      });
+
     core.info('Adding to the cache ...');
     const cachedDir = await tc.cacheDir(
-        extPath,
+        downloadPath,
         'awesome-ci',
         wantedVersion
     );

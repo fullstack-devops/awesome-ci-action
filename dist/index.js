@@ -1315,8 +1315,13 @@ async function run() {
         core.info('successfully renamed awesome-ci!');
     });
     const extPath = path.join(downloadPath, 'awesome-ci');
+    fs.readdir(downloadPath, (err, files) => {
+        files.forEach(file => {
+            core.info(file);
+        });
+    });
     core.info('Adding to the cache ...');
-    const cachedDir = await tc.cacheDir(extPath, 'awesome-ci', wantedVersion);
+    const cachedDir = await tc.cacheDir(downloadPath, 'awesome-ci', wantedVersion);
     core.info(`Successfully cached awesome-ci to ${cachedDir}`);
 }
 run();
