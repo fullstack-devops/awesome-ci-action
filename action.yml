@@ -6,8 +6,8 @@ branding:
 inputs:
   version:
     required: false
-    description: "The version to use (default: 0.8.0)"
-    default: "0.8.0"
+    description: "The version to use (default: 0.8.3)"
+    default: "0.8.3"
   arch:
     required: false
     description: "The softwart architecture (default: amd64)"
