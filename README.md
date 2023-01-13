@@ -19,7 +19,6 @@ Create a workflow (eg: `.github/workflows/release.yml`):
 name: PullRequest
 
 on:
-  pull_request:
 
 jobs:
   release:

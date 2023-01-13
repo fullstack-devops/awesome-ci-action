@@ -1304,7 +1304,7 @@ async function run() {
     const arch = await getOS();
     const platform = os.platform();
     const repo = "fullstack-devops/awesome-ci";
-    const aciName = `awesome-ci_${wantedVersion}_${platform}_${arch}`;
+    const aciName = `awesome-ci_${wantedVersion}_${platform}-${arch}`;
     const newAciLoc = `${process.env.HOME}/bin`;
     const newAciLocFile = path.join(newAciLoc, "awesome-ci");
     console.log("getting awesome-ci as", aciName);
