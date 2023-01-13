@@ -8,6 +8,7 @@
   },
   "scripts": {
     "build": "tsc && ncc build",
+    "run:ts": "npx ts-node src/main.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
