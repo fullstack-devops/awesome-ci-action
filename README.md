@@ -5,7 +5,7 @@ A GitHub Action to use the Awesome CI in your workflow
 
 ### Inputs
 
-- `version`: The chart-releaser version to use (default: 1.2.2)
+- `version`: The chart-releaser version to use (default: 1.2.3)
 
 ### Environment variables
 
