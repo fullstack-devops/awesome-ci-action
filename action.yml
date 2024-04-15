@@ -9,5 +9,5 @@ inputs:
     description: "The version to use (default: 1.4.0)"
     default: "1.4.0"
 runs:
-  using: 'node16'
+  using: 'node20'
   main: 'dist/index.js'
