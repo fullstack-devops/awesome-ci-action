@@ -6,8 +6,8 @@ branding:
 inputs:
   version:
     required: false
-    description: "The version to use (default: 1.6.1)"
-    default: "1.6.1"
+    description: "The version to use (default: 1.7.1)"
+    default: "1.7.1"
 runs:
   using: 'node20'
   main: 'dist/index.js'
