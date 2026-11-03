@@ -1,5 +1,29 @@
-# awesome-ci-action
+# awesome-ci-action - arcived
 A GitHub Action to use the Awesome CI in your workflow
+
+---
+
+This action is no longer maintained. It is replaced by **relctl-action**, which installs relctl, the successor
+of awesome-ci:
+https://github.com/layer87-labs/relctl-action
+
+```yaml
+- uses: layer87-labs/relctl-action@v1
+  with:
+    github-token: ${{ secrets.GITHUB_TOKEN }}
+```
+
+The reusable workflows (`generate-build-infos`, `create-release`) are in the same repository. The legacy
+comment commands `aci_*` and the variable `ACI_SILENT` are still accepted by relctl; set
+`RELCTL_LEGACY_ACI_ENV=true` to also get the `ACI_*` output variables.
+
+Migration guide, including a runbook that an AI agent can follow:
+https://labs.layer87.de/docs/relctl/migrating-from-awesome-ci
+
+This repository is read-only. Please open issues and pull requests at
+https://github.com/layer87-labs/relctl and https://github.com/layer87-labs/relctl-action.
+
+---
 
 ## Usage
 
